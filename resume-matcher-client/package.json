@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-"build-css": "tailwindcss -i ./src/index.css -o ./src/tailwind-output.css --watch",
+    "build-css": "npx tailwindcss -i ./src/index.css -o ./src/tailwind-output.css --watch",
     "build": "react-scripts build"
   },
   "browserslist": {
