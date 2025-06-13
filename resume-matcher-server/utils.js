@@ -1,24 +1,21 @@
-import { TfIdf, PorterStemmer, NGrams } from 'natural';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const natural = require('natural');
 
-export function cosineSimilarity(textA, textB) {
+export function cosineSimilarity(resume, jd) {
+  const TfIdf = natural.TfIdf;
   const tfidf = new TfIdf();
 
-  tfidf.addDocument(textA);
-  tfidf.addDocument(textB);
+  tfidf.addDocument(resume);
+  tfidf.addDocument(jd);
 
-  const vecA = [];
-  const vecB = [];
+  const terms = tfidf.listTerms(0);
+  const vecA = terms.map(t => t.tfidf);
+  const vecB = terms.map(t => tfidf.tfidf(t.term, 1));
 
-  tfidf.listTerms(0).forEach((term) => {
-    vecA.push(term.tfidf);
-    const termB = tfidf.tfidf(term.term, 1);
-    vecB.push(termB);
-  });
+  const dot = vecA.reduce((sum, a, i) => sum + a * vecB[i], 0);
+  const magA = Math.sqrt(vecA.reduce((sum, a) => sum + a * a, 0));
+  const magB = Math.sqrt(vecB.reduce((sum, b) => sum + b * b, 0));
 
-  const dotProduct = vecA.reduce((sum, a, i) => sum + a * vecB[i], 0);
-  const magnitudeA = Math.sqrt(vecA.reduce((sum, a) => sum + a ** 2, 0));
-  const magnitudeB = Math.sqrt(vecB.reduce((sum, b) => sum + b ** 2, 0));
-
-  if (magnitudeA === 0 || magnitudeB === 0) return 0;
-  return dotProduct / (magnitudeA * magnitudeB);
+  return magA && magB ? dot / (magA * magB) : 0;
 }

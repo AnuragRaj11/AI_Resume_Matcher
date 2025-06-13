@@ -1,95 +1,96 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useRef } from "react";
+import axios from "axios";
 
 export default function MatchForm({ onResult }) {
-  const [resume, setResume] = useState('');
-  const [jd, setJd] = useState('');
+  const [resumeFile, setResumeFile] = useState(null);
+  const [jd, setJd] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [progress, setProgress] = useState(0);
+  const fileInputRef = useRef(null);
 
-  const handleFileRead = (file, setContent) => {
-    const reader = new FileReader();
-    reader.onload = () => setContent(reader.result);
-    reader.readAsText(file);
+  const handleFileSelect = (e) => {
+    const file = e.target.files[0];
+    if (file?.type === "application/pdf") {
+      setResumeFile(file);
+      setError(null);
+    } else {
+      setError("Please upload a valid PDF file.");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!resumeFile || !jd) return setError("Both resume and JD required");
+
     setLoading(true);
+    setProgress(0);
 
     try {
       const formData = new FormData();
-      formData.append('resume', resume);
-      formData.append('job_description', jd);
+      formData.append("resume", resumeFile);
+      formData.append("job_description", jd);
 
-      const response = await axios.post('http://localhost:8000/match/', formData);
-      onResult(response.data);
+      const res = await axios.post("http://localhost:8000/match", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        onUploadProgress: (e) =>
+          setProgress(Math.round((e.loaded * 100) / e.total)),
+      });
+
+      onResult(res.data);
+      setResumeFile(null);
+      setJd("");
+      fileInputRef.current.value = "";
+      setError(null);
     } catch (err) {
-      alert('Error: ' + err.message);
+      console.error(err);
+      setError("Matching failed. Try again.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full max-w-3xl sm:max-w-xl p-6 rounded-lg shadow-lg
-                 bg-gradient-to-r from-green-200 via-green-100 to-blue-200
-                 backdrop-blur-sm bg-opacity-80"
-    >
-      {/* Resume Upload */}
-      <label className="block mb-2 font-semibold text-green-700">
-        Upload Resume (or paste below)
-      </label>
+    <form onSubmit={handleSubmit} className="p-6 max-w-xl mx-auto bg-white rounded shadow space-y-4">
+      <label className="block font-bold text-green-700">Upload Resume (PDF)</label>
       <input
         type="file"
-        accept=".txt,.pdf,.doc,.docx"
-        onChange={(e) => {
-          const file = e.target.files[0];
-          if (file) handleFileRead(file, setResume);
-        }}
-        className="mb-3 border-2 border-green-500 rounded p-1 cursor-pointer hover:border-green-700 transition"
-      />
-      <textarea
-        className="w-full p-3 mb-6 border-2 border-green-500 rounded focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 transition"
-        rows={4}
-        placeholder="Or paste resume here"
-        value={resume}
-        onChange={(e) => setResume(e.target.value)}
+        accept=".pdf"
+        ref={fileInputRef}
+        onChange={handleFileSelect}
+        className="w-full border border-green-500 rounded px-3 py-2"
+        required
       />
 
-      {/* Job Description Upload */}
-      <label className="block mb-2 font-semibold text-green-700">
-        Upload Job Description (or paste below)
-      </label>
-      <input
-        type="file"
-        accept=".txt,.pdf,.doc,.docx"
-        onChange={(e) => {
-          const file = e.target.files[0];
-          if (file) handleFileRead(file, setJd);
-        }}
-        className="mb-3 border-2 border-green-500 rounded p-1 cursor-pointer hover:border-green-700 transition"
-      />
+      <label className="block font-bold text-green-700">Job Description</label>
       <textarea
-        className="w-full p-3 mb-6 border-2 border-green-500 rounded focus:outline-none focus:ring-4 focus:ring-green-400 focus:border-green-600 transition"
-        rows={4}
-        placeholder="Or paste job description here"
+        className="w-full border border-green-500 rounded p-2"
+        rows="6"
         value={jd}
         onChange={(e) => setJd(e.target.value)}
+        required
+        placeholder="Paste the job description here..."
       />
 
-      {/* Submit Button */}
+      {loading && (
+        <div className="w-full bg-gray-300 rounded-full h-2 overflow-hidden">
+          <div
+            className="bg-green-600 h-2 transition-all"
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+      )}
+
+      {error && <p className="text-red-600">{error}</p>}
+
       <button
         type="submit"
         disabled={loading}
-        className={`w-full py-3 rounded text-white font-bold transition transform duration-150 ease-in-out ${
-          loading
-            ? 'bg-green-300 cursor-not-allowed scale-100'
-            : 'bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 hover:scale-105 active:scale-95'
+        className={`w-full py-3 font-bold text-white rounded ${
+          loading ? "bg-green-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
         }`}
       >
-        {loading ? 'Matching...' : 'Match Resume'}
+        {loading ? "Matching..." : "Match Resume"}
       </button>
     </form>
   );
