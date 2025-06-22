@@ -3,6 +3,7 @@
 ProjTest
 ├─ package-lock.json
 ├─ package.json
+├─ README.md
 ├─ resume-matcher-client
 │  ├─ package-lock.json
 │  ├─ package.json
@@ -18,10 +19,12 @@ ProjTest
 │     ├─ index.js
 │     └─ tailwind-output.css
 ├─ resume-matcher-server
-│  ├─ .env
+│  ├─ index.js
 │  ├─ package-lock.json
 │  ├─ package.json
-│  ├─ server.js
+│  ├─ test
+│  │  └─ data
+│  │     └─ 05-versions-space.pdf
 │  └─ utils.js
 └─ tailwind.config.js
 
