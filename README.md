@@ -1,31 +1,34 @@
 
 ```
 ProjTest
-├─ package-lock.json
-├─ package.json
-├─ README.md
-├─ resume-matcher-client
+├─ ProjTest
 │  ├─ package-lock.json
 │  ├─ package.json
-│  ├─ public
-│  │  └─ index.html
-│  ├─ README.md
-│  └─ src
-│     ├─ App.jsx
-│     ├─ components
-│     │  ├─ MatchForm.jsx
-│     │  └─ ResultCard.jsx
-│     ├─ index.css
+│  ├─ resume-matcher-client
+│  │  ├─ package-lock.json
+│  │  ├─ package.json
+│  │  ├─ public
+│  │  │  └─ index.html
+│  │  └─ src
+│  │     ├─ App.jsx
+│  │     ├─ components
+│  │     │  ├─ MatchForm.jsx
+│  │     │  └─ ResultCard.jsx
+│  │     ├─ index.css
+│  │     ├─ index.js
+│  │     └─ tailwind-output.css
+│  └─ resume-matcher-server
+│     ├─ .env
 │     ├─ index.js
-│     └─ tailwind-output.css
-├─ resume-matcher-server
-│  ├─ index.js
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ test
-│  │  └─ data
-│  │     └─ 05-versions-space.pdf
-│  └─ utils.js
-└─ tailwind.config.js
+│     ├─ package-lock.json
+│     ├─ package.json
+│     ├─ services
+│     │  ├─ matchingService.js
+│     │  └─ pdfService.js
+│     └─ test
+│        └─ data
+│           └─ test-resume.pdf
+├─ README.md
+└─ setup.sh
 
 ```

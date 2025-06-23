@@ -1,0 +1,10 @@
+{
+  "name": "resume-matcher",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently \"cd resume-matcher-server && npm start\" \"cd resume-matcher-client && npm start\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
