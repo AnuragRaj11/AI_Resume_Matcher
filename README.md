@@ -32,6 +32,7 @@ Experience comparison
 ✅ PDF size validation (max 5MB)
 
 
+```
 AI Resume Matcher
 ├─ ProjTest
 │  ├─ package-lock.json
@@ -69,4 +70,4 @@ AI Resume Matcher
 
 # 📜 License
 MIT © Anurag Raj
-```
+
