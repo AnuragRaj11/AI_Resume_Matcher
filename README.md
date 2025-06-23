@@ -1,7 +1,7 @@
-📄 AI Resume Matcher
+ # 📄 AI Resume Matcher
 An intelligent full-stack web app that compares a user's resume with a job description using AI-based text similarity and skill matching. Built with React, Node.js, Express, and Natural Language Processing (NLP) techniques.
 
-🧰 Tech Stack
+# 🧰 Tech Stack
 Frontend: React, Axios, TailwindCSS, React Icons
 
 Backend: Node.js, Express, Multer, Helmet, Morgan
@@ -12,25 +12,22 @@ PDF Parsing: pdf-parse
 
 Deployment: Netlify (frontend), Render (backend)
 
-✨ Features
+ # ✨ Features
+
 ✅ Upload PDF Resume
 ✅ Paste a job description
 ✅ Analyze:
 
 Keyword similarity using TF-IDF
-
 Skill matching (JavaScript, React, etc.)
-
 Experience extraction via regex
-
 Semantic overlap via token comparison
+
 ✅ See:
-
 Overall match score
-
 Skill gap suggestions
-
 Experience comparison
+
 ✅ Realtime upload progress
 ✅ PDF size validation (max 5MB)
 
@@ -69,29 +66,6 @@ ProjTest
 
 ```
 
-# Clone the repo
-git clone https://github.com/your-username/resume-matcher.git
-cd resume-matcher
 
-# Install backend dependencies
-cd resume-matcher-server
-npm install
-
-# Install frontend dependencies
-cd ../resume-matcher-client
-npm install
-
-
-# From root directory
-npm install concurrently
-
-# Add this to root package.json:
-# "scripts": {
-#   "start": "concurrently \"cd resume-matcher-server && npm start\" \"cd resume-matcher-client && npm start\""
-# }
-
-npm start
-
-
-📜 License
+# 📜 License
 MIT © Anurag Raj
