@@ -32,24 +32,25 @@ Experience comparison
 ✅ PDF size validation (max 5MB)
 
 
-```
-ProjTest
+AI Resume Matcher
 ├─ ProjTest
 │  ├─ package-lock.json
 │  ├─ package.json
 │  ├─ resume-matcher-client
 │  │  ├─ package-lock.json
 │  │  ├─ package.json
+│  │  ├─ postcss.config.js
 │  │  ├─ public
 │  │  │  └─ index.html
-│  │  └─ src
-│  │     ├─ App.jsx
-│  │     ├─ components
-│  │     │  ├─ MatchForm.jsx
-│  │     │  └─ ResultCard.jsx
-│  │     ├─ index.css
-│  │     ├─ index.js
-│  │     └─ tailwind-output.css
+│  │  ├─ src
+│  │  │  ├─ App.jsx
+│  │  │  ├─ components
+│  │  │  │  ├─ MatchForm.jsx
+│  │  │  │  └─ ResultCard.jsx
+│  │  │  ├─ index.css
+│  │  │  ├─ index.js
+│  │  │  └─ tailwind-output.css
+│  │  └─ tailwind.config.js
 │  └─ resume-matcher-server
 │     ├─ .env
 │     ├─ index.js
@@ -61,11 +62,11 @@ ProjTest
 │     └─ test
 │        └─ data
 │           └─ test-resume.pdf
-├─ README.md
-└─ setup.sh 
+└─ README.md
 
 ```
 
 
 # 📜 License
 MIT © Anurag Raj
+```
