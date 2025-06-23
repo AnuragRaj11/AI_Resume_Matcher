@@ -67,7 +67,6 @@ AI Resume Matcher
 
 ```
 
-
 # 📜 License
 MIT © Anurag Raj
 

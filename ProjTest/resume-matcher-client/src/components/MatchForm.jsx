@@ -47,17 +47,21 @@ const MatchForm = ({ onResult, setLoading }) => {
       formData.append('resume', resumeFile);
       formData.append('jobDescription', jd);
 
-      const response = await axios.post('/api/match', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-        onUploadProgress: (progressEvent) => {
-          const percentCompleted = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total
-          );
-          setProgress(percentCompleted);
+      const response = await axios.post(
+        'https://ai-resume-matcher-qb6a.onrender.com/api/match',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          },
+          onUploadProgress: (progressEvent) => {
+            const percentCompleted = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
+            setProgress(percentCompleted);
+          }
         }
-      });
+      );
 
       if (response.data.success) {
         onResult(response.data);
@@ -81,7 +85,7 @@ const MatchForm = ({ onResult, setLoading }) => {
   const handleJdChange = (e) => {
     const value = e.target.value;
     setJd(value);
-    setWarning(''); // No warning even for short text
+    setWarning('');
   };
 
   return (
