@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import MatchForm from './components/MatchForm';
 import ResultCard from './components/ResultCard';
 import './index.css';
-import './tailwind-output.css';
 
 function App() {
   const [result, setResult] = useState(null);

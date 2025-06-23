@@ -14,17 +14,15 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
+    "cross-env": "^7.0.3",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5"
   },
   "scripts": {
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:css": "tailwindcss build src/tailwind-output.css -o src/index.css",
-    "watch:css": "tailwindcss build src/tailwind-output.css -o src/index.css --watch",
-    "dev": "npm run watch:css & npm start"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
