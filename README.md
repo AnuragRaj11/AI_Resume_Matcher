@@ -49,8 +49,7 @@ AI Resume Matcher
 │  │  │  │  ├─ MatchForm.jsx
 │  │  │  │  └─ ResultCard.jsx
 │  │  │  ├─ index.css
-│  │  │  ├─ index.js
-│  │  │  └─ tailwind-output.css
+│  │  │  └─ index.js
 │  │  └─ tailwind.config.js
 │  └─ resume-matcher-server
 │     ├─ .env
@@ -69,4 +68,3 @@ AI Resume Matcher
 
 # 📜 License
 MIT © Anurag Raj
-

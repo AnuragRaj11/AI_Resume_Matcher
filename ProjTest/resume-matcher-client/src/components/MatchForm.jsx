@@ -48,7 +48,7 @@ const MatchForm = ({ onResult, setLoading }) => {
       formData.append('jobDescription', jd);
 
       const response = await axios.post(
-        'https://ai-resume-matcher-qb6a.onrender.com/api/match',
+        'https://ai-resume-matcher-8a0q.onrender.com/',
         formData,
         {
           headers: {
