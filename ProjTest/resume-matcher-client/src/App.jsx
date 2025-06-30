@@ -19,7 +19,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 flex flex-col items-center p-4 sm:p-8">
+    <div className="min-h-screen bg-gray-100 text-gray-800 flex flex-col items-center p-4 sm:p-8">
       <header className="w-full max-w-4xl mb-8 text-center">
         <div className="inline-block bg-gradient-to-r from-blue-700 to-indigo-800 p-1 rounded-lg mb-4 shadow-lg">
           <h1 className="text-4xl font-bold text-white px-6 py-2 rounded-md">
@@ -31,7 +31,7 @@ function App() {
         </p>
       </header>
 
-      <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6 mb-8 transition-all duration-300 hover:shadow-xl">
+      <div className="w-full max-w-4xl bg-white text-gray-900 rounded-xl shadow-lg p-6 mb-8 transition-all duration-300 hover:shadow-xl">
         <MatchForm 
           onResult={handleResult} 
           setLoading={setLoading} 

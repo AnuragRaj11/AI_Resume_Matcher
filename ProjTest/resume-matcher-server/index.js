@@ -10,9 +10,9 @@ const { enhancedMatch } = require('./services/matchingService');
 
 const app = express();
 
-// Enhanced CORS configuration
+// ✅ Updated CORS for deployed Netlify domain
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: ['https://resumemat.netlify.app'],
   methods: ['POST'],
   allowedHeaders: ['Content-Type']
 }));
@@ -29,11 +29,11 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
-// File upload configuration
+// File upload config
 const storage = multer.memoryStorage();
 const upload = multer({
   storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: (req, file, cb) => {
     if (file.mimetype === 'application/pdf') {
       cb(null, true);
@@ -43,13 +43,13 @@ const upload = multer({
   }
 });
 
-// Enhanced matching endpoint
+// ✅ Fixed: use req.file correctly
 app.post('/api/match', upload.single('resume'), async (req, res) => {
   try {
-    const { file, body } = req;
-    const { jobDescription } = body;
+    const file = req.file;
+    const jobDescription = req.body.jobDescription;
 
-    if (!file) {
+    if (!file || !file.buffer) {
       return res.status(400).json({ error: 'No resume file uploaded' });
     }
     if (!jobDescription || jobDescription.trim().length === 0) {
@@ -59,10 +59,7 @@ app.post('/api/match', upload.single('resume'), async (req, res) => {
     const resumeText = await extractTextFromPdf(file.buffer);
     const result = await enhancedMatch(resumeText, jobDescription);
 
-    res.json({
-      success: true,
-      ...result
-    });
+    res.json({ success: true, ...result });
 
   } catch (error) {
     console.error('Matching error:', error);
@@ -73,7 +70,6 @@ app.post('/api/match', upload.single('resume'), async (req, res) => {
   }
 });
 
-// Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date() });
 });
