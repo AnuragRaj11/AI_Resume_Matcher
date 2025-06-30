@@ -48,7 +48,7 @@ const MatchForm = ({ onResult, setLoading }) => {
       formData.append('jobDescription', jd);
 
       const response = await axios.post(
-        'https://ai-resume-matcher-8a0q.onrender.com/',
+        'https://ai-resume-matcher-8a0q.onrender.com/api/match',
         formData,
         {
           headers: {
@@ -168,9 +168,8 @@ const MatchForm = ({ onResult, setLoading }) => {
       <button
         type="submit"
         disabled={!resumeFile || !jd.trim()}
-        className={`w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 ${
-          (!resumeFile || !jd.trim()) ? 'opacity-50 cursor-not-allowed' : ''
-        }`}
+        className={`w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 ${(!resumeFile || !jd.trim()) ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
       >
         Analyze Match
       </button>
