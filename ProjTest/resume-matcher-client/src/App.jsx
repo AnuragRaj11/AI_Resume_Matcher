@@ -25,7 +25,7 @@ function App() {
       <header className="w-full max-w-4xl mb-8 text-center">
         <div className="relative group">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 rounded-xl shadow-lg transform group-hover:scale-105 transition-all duration-500 -z-10 opacity-95" />
-       <h1 className="text-4xl md:text-5xl font-extrabold text-custom-red px-8 py-4 rounded-xl relative z-10">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-custom-red px-8 py-4 rounded-xl relative z-10">
             AI Resume Matcher
           </h1>
         </div>
@@ -36,9 +36,9 @@ function App() {
 
       {/* Rest of the code remains the same... */}
       <main className="w-full max-w-4xl bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 mb-8 transition-all duration-500 hover:shadow-2xl border border-gray-100">
-        <MatchForm 
-          onResult={handleResult} 
-          setLoading={setLoading} 
+        <MatchForm
+          onResult={handleResult}
+          setLoading={setLoading}
           loading={loading}
         />
       </main>
@@ -73,8 +73,8 @@ function App() {
               <span>100%</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2.5">
-              <div 
-                className="bg-gradient-to-r from-blue-500 to-blue-600 h-2.5 rounded-full animate-pulse" 
+              <div
+                className="bg-gradient-to-r from-blue-500 to-blue-600 h-2.5 rounded-full animate-pulse"
                 style={{ width: '100%' }}
               ></div>
             </div>
@@ -89,15 +89,13 @@ function App() {
       )}
 
       <footer className="mt-12 text-center text-gray-500 text-sm">
-        <div className="flex items-center justify-center space-x-4 mb-2">
-          <a href="/privacy" className="hover:text-blue-600 transition-colors">Privacy</a>
-          <span>•</span>
-          <a href="/terms" className="hover:text-blue-600 transition-colors">Terms</a>
-          <span>•</span>
-          <a href="/contact" className="hover:text-blue-600 transition-colors">Contact</a>
-        </div>
-        <p className="text-gray-400">
-          © {new Date().getFullYear()} AI Resume Matcher — Your data is processed securely and never stored.
+        <p className="text-sm text-gray-500">
+          © {new Date().getFullYear()} AI Resume Matcher. All rights reserved.
+          <br />
+          Your data is processed securely and never stored.
+        </p>
+        <p className="text-xs text-gray-400 mt-1">
+          Developed by <span className="font-medium text-gray-600">Anurag Raj</span>
         </p>
       </footer>
     </div>
