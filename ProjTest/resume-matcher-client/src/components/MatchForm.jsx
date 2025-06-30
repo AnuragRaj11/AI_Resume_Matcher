@@ -1,3 +1,4 @@
+// ✅ UPDATED: resume-matcher-client/src/components/MatchForm.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FiUpload, FiFileText, FiX, FiEdit2, FiAlertTriangle } from 'react-icons/fi';
@@ -91,7 +92,7 @@ const MatchForm = ({ onResult, setLoading }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-4">
-        <label className="block text-lg font-semibold text-gray-800">
+        <label htmlFor="resume" className="block text-lg font-semibold text-gray-900">
           Upload Resume (PDF, max 5MB)
           <span className="text-red-500 ml-1">*</span>
         </label>
@@ -113,7 +114,7 @@ const MatchForm = ({ onResult, setLoading }) => {
             </button>
           </div>
         ) : (
-          <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-blue-200 rounded-xl cursor-pointer bg-blue-50 hover:bg-blue-100 transition-all duration-300 group">
+          <label htmlFor="resume" className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-blue-200 rounded-xl cursor-pointer bg-blue-50 hover:bg-blue-100 transition-all duration-300 group">
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
               <div className="p-3 bg-blue-100 rounded-full mb-3 group-hover:bg-blue-200 transition-colors">
                 <FiUpload className="w-6 h-6 text-blue-600" />
@@ -124,6 +125,8 @@ const MatchForm = ({ onResult, setLoading }) => {
               <p className="text-xs text-gray-500">PDF only (MAX. 5MB)</p>
             </div>
             <input
+              id="resume"
+              name="resume"
               type="file"
               className="hidden"
               accept=".pdf"
@@ -134,12 +137,14 @@ const MatchForm = ({ onResult, setLoading }) => {
       </div>
 
       <div className="space-y-4">
-        <label className="block text-lg font-semibold text-gray-800">
+        <label htmlFor="jobDescription" className="block text-lg font-semibold text-gray-900">
           Job Description
           <span className="text-red-500 ml-1">*</span>
         </label>
         <div className="relative">
           <textarea
+            id="jobDescription"
+            name="jobDescription"
             className="w-full p-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-blue-500 min-h-[200px] placeholder-gray-400 transition-all duration-200"
             placeholder="Paste the job description here"
             value={jd}
@@ -168,8 +173,9 @@ const MatchForm = ({ onResult, setLoading }) => {
       <button
         type="submit"
         disabled={!resumeFile || !jd.trim()}
-        className={`w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 ${(!resumeFile || !jd.trim()) ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
+        className={`w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 ${
+          (!resumeFile || !jd.trim()) ? 'opacity-50 cursor-not-allowed' : ''
+        }`}
       >
         Analyze Match
       </button>
